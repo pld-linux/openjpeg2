@@ -59,8 +59,9 @@ Programy kodujące/dekodujące dla biblioteki OpenJPEG 2.
 %setup -q -n openjpeg-%{version}
 
 %build
-%cmake .
-	
+%cmake . \
+	-DOPENJPEG_INSTALL_LIB_DIR=%{_lib}
+
 # not ready for openjpeg 2:
 #	-DBUILD_JAVA=ON
 #	-DBUILD_JPWL=ON
