@@ -2,12 +2,13 @@ Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
 Version:	2.0.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 #Source0Download: http://code.google.com/p/openjpeg/downloads/list
 Source0:	http://openjpeg.googlecode.com/files/openjpeg-%{version}.tar.gz
 # Source0-md5:	d9be274bddc0f47f268e484bdcaaa6c5
+Patch0:		%{name}-headers.patch
 URL:		http://www.openjpeg.org/
 BuildRequires:	cmake >= 2.8.2
 BuildRequires:	lcms2-devel >= 2
@@ -57,6 +58,7 @@ Programy kodujące/dekodujące dla biblioteki OpenJPEG 2.
 
 %prep
 %setup -q -n openjpeg-%{version}
+%patch0 -p1
 
 %build
 %cmake . \
