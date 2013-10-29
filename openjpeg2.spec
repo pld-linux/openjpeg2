@@ -2,7 +2,7 @@ Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
 Version:	2.0.0
-Release:	2
+Release:	3
 License:	BSD
 Group:		Libraries
 #Source0Download: http://code.google.com/p/openjpeg/downloads/list
