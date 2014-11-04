@@ -1,13 +1,13 @@
 Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
-Version:	2.0.0
-Release:	3
+Version:	2.1.0
+Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: http://code.google.com/p/openjpeg/downloads/list
-Source0:	http://openjpeg.googlecode.com/files/openjpeg-%{version}.tar.gz
-# Source0-md5:	d9be274bddc0f47f268e484bdcaaa6c5
+Source0:	http://downloads.sourceforge.net/openjpeg.mirror/openjpeg-%{version}.tar.gz
+# Source0-md5:	f6419fcc233df84f9a81eb36633c6db6
 Patch0:		%{name}-headers.patch
 URL:		http://www.openjpeg.org/
 BuildRequires:	cmake >= 2.8.2
@@ -81,9 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# packaged as doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/openjpeg-2.0
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -94,21 +91,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS CHANGES LICENSE NEWS README THANKS
 %attr(755,root,root) %{_libdir}/libopenjp2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libopenjp2.so.6
+%attr(755,root,root) %ghost %{_libdir}/libopenjp2.so.7
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libopenjp2.so
-%{_includedir}/openjpeg-2.0
-%dir %{_libdir}/openjpeg-2.0
-%{_libdir}/openjpeg-2.0/OpenJPEG*.cmake
-%{_mandir}/man3/libopenjp2.3*
+%{_includedir}/openjpeg-2.1
+%dir %{_libdir}/openjpeg-2.1
+%{_libdir}/openjpeg-2.1/OpenJPEG*.cmake
+%{_pkgconfigdir}/libopenjp2.pc
 
 %files progs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/opj_compress
 %attr(755,root,root) %{_bindir}/opj_decompress
 %attr(755,root,root) %{_bindir}/opj_dump
-%{_mandir}/man1/opj_compress.1*
-%{_mandir}/man1/opj_decompress.1*
-%{_mandir}/man1/opj_dump.1*
