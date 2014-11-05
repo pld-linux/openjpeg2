@@ -5,12 +5,12 @@ Version:	2.1.0
 Release:	1
 License:	BSD
 Group:		Libraries
-#Source0Download: http://code.google.com/p/openjpeg/downloads/list
 Source0:	http://downloads.sourceforge.net/openjpeg.mirror/openjpeg-%{version}.tar.gz
 # Source0-md5:	f6419fcc233df84f9a81eb36633c6db6
 Patch0:		%{name}-headers.patch
 URL:		http://www.openjpeg.org/
 BuildRequires:	cmake >= 2.8.2
+BuildRequires:	doxygen
 BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
@@ -62,6 +62,7 @@ Programy kodujące/dekodujące dla biblioteki OpenJPEG 2.
 
 %build
 %cmake . \
+	-DBUILD_DOC=ON \
 	-DOPENJPEG_INSTALL_LIB_DIR=%{_lib}
 
 # not ready for openjpeg 2:
@@ -80,6 +81,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# packaged as doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/openjpeg-2.1
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -100,9 +105,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/openjpeg-2.1
 %{_libdir}/openjpeg-2.1/OpenJPEG*.cmake
 %{_pkgconfigdir}/libopenjp2.pc
+%{_mandir}/man3/libopenjp2.3*
 
 %files progs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/opj_compress
 %attr(755,root,root) %{_bindir}/opj_decompress
 %attr(755,root,root) %{_bindir}/opj_dump
+%{_mandir}/man1/opj_compress.1*
+%{_mandir}/man1/opj_decompress.1*
+%{_mandir}/man1/opj_dump.1*
