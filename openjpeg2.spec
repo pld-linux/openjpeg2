@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
@@ -44,6 +48,18 @@ using the OpenJPEG 2 library.
 Ten pakiet zawiera plik nagłówkowy potrzebny do tworzenia programów
 wykorzystujących bibliotekę OpenJPEG 2.
 
+%package static
+Summary:	Static OpenJPEG 2 library
+Summary(pl.UTF-8):	Statyczna biblioteka OpenJPEG 2
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static OpenJPEG 2 library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka OpenJPEG 2.
+
 %package progs
 Summary:	OpenJPEG 2 codec programs
 Summary(pl.UTF-8):	Programy kodujące/dekodujące dla biblioteki OpenJPEG 2
@@ -62,6 +78,7 @@ Programy kodujące/dekodujące dla biblioteki OpenJPEG 2.
 %build
 %cmake . \
 	-DBUILD_DOC=ON \
+	%{!?with_static_libs:-DBUILD_STATIC_LIBS=OFF} \
 	-DOPENJPEG_INSTALL_LIB_DIR=%{_lib}
 
 # not ready for openjpeg 2:
@@ -105,6 +122,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/openjpeg-2.3/OpenJPEG*.cmake
 %{_pkgconfigdir}/libopenjp2.pc
 %{_mandir}/man3/libopenjp2.3*
+
+%if %{with static_libs}
+%files static
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libopenjp2.a
+%endif
 
 %files progs
 %defattr(644,root,root,755)
