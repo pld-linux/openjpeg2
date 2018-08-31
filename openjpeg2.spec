@@ -39,6 +39,7 @@ Summary:	Header file for OpenJPEG 2 library
 Summary(pl.UTF-8):	Plik nagłówkowy biblioteki OpenJPEG 2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-progs = %{version}-%{release}
 
 %description devel
 This package contains the header file needed for developing programs
