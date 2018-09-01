@@ -6,7 +6,7 @@ Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
 Version:	2.3.0
-Release:	2
+Release:	3
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/uclouvain/openjpeg/releases/
@@ -40,7 +40,6 @@ Summary:	Header file for OpenJPEG 2 library
 Summary(pl.UTF-8):	Plik nagłówkowy biblioteki OpenJPEG 2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-progs = %{version}-%{release}
 
 %description devel
 This package contains the header file needed for developing programs
@@ -105,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/html
 
 # disable completeness check incompatible with split packaging
-%{__sed} -i -e '/_IMPORT_CHECK_FILES_FOR_openjp2_static/d' $RPM_BUILD_ROOT%{_libdir}/openjpeg-2.3/OpenJPEGTargets-pld.cmake
+%{__sed} -i -e '/_IMPORT_CHECK_FILES_FOR_\(openjp2_static\|opj_\)/d' $RPM_BUILD_ROOT%{_libdir}/openjpeg-2.3/OpenJPEGTargets-pld.cmake
 
 %clean
 rm -rf $RPM_BUILD_ROOT
