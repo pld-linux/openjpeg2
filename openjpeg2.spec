@@ -5,13 +5,13 @@
 Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
-Version:	2.3.1
+Version:	2.4.0
 Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/uclouvain/openjpeg/releases/
 Source0:	https://github.com/uclouvain/openjpeg/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	3b9941dc7a52f0376694adb15a72903f
+# Source0-md5:	4d388298335947367e91f1d100468af1
 URL:		http://www.openjpeg.org/
 BuildRequires:	cmake >= 2.8.2
 BuildRequires:	doxygen
@@ -100,11 +100,10 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # packaged as doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/openjpeg-2.3
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/html
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/openjpeg-2.4
 
 # disable completeness check incompatible with split packaging
-%{__sed} -i -e '/_IMPORT_CHECK_FILES_FOR_\(openjp2_static\|opj_\)/d' $RPM_BUILD_ROOT%{_libdir}/openjpeg-2.3/OpenJPEGTargets-pld.cmake
+%{__sed} -i -e '/_IMPORT_CHECK_FILES_FOR_\(openjp2_static\|opj_\)/d' $RPM_BUILD_ROOT%{_libdir}/openjpeg-2.4/OpenJPEGTargets-pld.cmake
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,9 +120,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libopenjp2.so
-%{_includedir}/openjpeg-2.3
-%dir %{_libdir}/openjpeg-2.3
-%{_libdir}/openjpeg-2.3/OpenJPEG*.cmake
+%{_includedir}/openjpeg-2.4
+%dir %{_libdir}/openjpeg-2.4
+%{_libdir}/openjpeg-2.4/OpenJPEG*.cmake
 %{_pkgconfigdir}/libopenjp2.pc
 %{_mandir}/man3/libopenjp2.3*
 
