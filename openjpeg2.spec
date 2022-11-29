@@ -19,6 +19,7 @@ BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	pkgconfig >= 1:0.22
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
