@@ -77,7 +77,7 @@ Programy kodujące/dekodujące dla biblioteki OpenJPEG 2.
 %setup -q -n openjpeg-%{version}
 
 %build
-%cmake . \
+%cmake -B build \
 	-DBUILD_DOC=ON \
 	%{!?with_static_libs:-DBUILD_STATIC_LIBS=OFF} \
 	-DOPENJPEG_INSTALL_LIB_DIR=%{_lib}
@@ -91,12 +91,12 @@ Programy kodujące/dekodujące dla biblioteki OpenJPEG 2.
 # no BUILD_JPIP here (see openjpip.spec for it)
 # no BUILD_JP3D here (see openjp3d.spec for it)
 
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # packaged as doc
