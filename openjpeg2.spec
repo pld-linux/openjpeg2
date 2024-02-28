@@ -5,20 +5,21 @@
 Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
-Version:	2.5.0
+Version:	2.5.2
 Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/uclouvain/openjpeg/releases/
 Source0:	https://github.com/uclouvain/openjpeg/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	5cbb822a1203dd75b85639da4f4ecaab
+# Source0-md5:	f9ee64845881a15109ed0aa73a12202f
 URL:		http://www.openjpeg.org/
-BuildRequires:	cmake >= 2.8.2
+BuildRequires:	cmake >= 3.5
 BuildRequires:	doxygen
 BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	pkgconfig >= 1:0.22
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
@@ -62,6 +63,18 @@ Static OpenJPEG 2 library.
 %description static -l pl.UTF-8
 Statyczna biblioteka OpenJPEG 2.
 
+%package apidocs
+Summary:	OpenJPEG 2 API documentation
+Summary(pl.UTF-8):	Dokumentacja API OpenJPEG 2
+Group:		Documentation
+BuildArch:	noarch
+
+%description apidocs
+OpenJPEG 2 API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API OpenJPEG 2.
+
 %package progs
 Summary:	OpenJPEG 2 codec programs
 Summary(pl.UTF-8):	Programy kodujące/dekodujące dla biblioteki OpenJPEG 2
@@ -101,10 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # packaged as doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/openjpeg-2.5
-
-# disable completeness check incompatible with split packaging
-%{__sed} -i -e '/_IMPORT_CHECK_FILES_FOR_\(openjp2_static\|opj_\)/d' $RPM_BUILD_ROOT%{_libdir}/openjpeg-2.5/OpenJPEGTargets-pld.cmake
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -122,8 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libopenjp2.so
 %{_includedir}/openjpeg-2.5
-%dir %{_libdir}/openjpeg-2.5
-%{_libdir}/openjpeg-2.5/OpenJPEG*.cmake
+%{_libdir}/cmake/openjpeg-2.5
 %{_pkgconfigdir}/libopenjp2.pc
 %{_mandir}/man3/libopenjp2.3*
 
@@ -132,6 +141,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libopenjp2.a
 %endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc build/doc/html/*
 
 %files progs
 %defattr(644,root,root,755)
