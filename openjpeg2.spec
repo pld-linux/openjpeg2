@@ -5,13 +5,13 @@
 Summary:	An open-source JPEG 2000 codec
 Summary(pl.UTF-8):	Biblioteka kodująca i dekodująca format JPEG 2000
 Name:		openjpeg2
-Version:	2.5.3
-Release:	3
+Version:	2.5.4
+Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/uclouvain/openjpeg/releases/
 Source0:	https://github.com/uclouvain/openjpeg/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	12ae257cb21738c41b5f6ca977d01081
+# Source0-md5:	6160de075bb5191e482bc0f024b375e4
 URL:		http://www.openjpeg.org/
 BuildRequires:	cmake >= 3.5
 BuildRequires:	doxygen
@@ -126,11 +126,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS.md CHANGELOG.md LICENSE NEWS.md README.md THANKS.md
 %attr(755,root,root) %{_libdir}/libopenjp2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libopenjp2.so.7
+%ghost %{_libdir}/libopenjp2.so.7
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libopenjp2.so
+%{_libdir}/libopenjp2.so
 %{_includedir}/openjpeg-2.5
 %{_libdir}/cmake/openjpeg-2.5
 %{_pkgconfigdir}/libopenjp2.pc
